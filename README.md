@@ -41,15 +41,17 @@ Read more about the SSD board [here](./ssdboard.md)
 
 ## Sponsored by OSHWLab Stars and HackClub:
  &nbsp;
+
+ 
 <img width="124" height="1000" alt="image" src="https://github.com/user-attachments/assets/e93a1d8b-093b-412c-bb61-1ad24fef76f9" />
  &nbsp;
   &nbsp;
    &nbsp;
+
+   
 <img width="251" height="1000" alt="image" src="https://github.com/user-attachments/assets/21c10633-868b-4a69-a2cb-da89eb62470c" />
  &nbsp;
   &nbsp;
    &nbsp;
-<img width="212" height="212" alt="image" src="https://github.com/user-attachments/assets/3c6a5d8c-0add-428b-ab01-c25ad1e42543" />
-
 
 Huge thanks to Bob from OSHWLab for all the support and sponsoring the PCBA! 
