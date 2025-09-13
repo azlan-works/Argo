@@ -1,6 +1,7 @@
 # Argo
 
-<img width="946" height="509" alt="Screenshot 2025-08-08 at 19 43 49" src="https://github.com/user-attachments/assets/3ed8dd86-2a15-479f-9ff9-938cbf953ff6" />
+![image](https://github.com/user-attachments/assets/2ff08daf-f34f-497e-9aa8-630959d153f1)
+
 
 ## Mainboard
 The main board houses the CM5 and breaks out the most basic functionality needed.
