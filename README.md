@@ -1,11 +1,5 @@
 # Argo
 
-<img width="1920" height="1080" alt="Screenshot 2025-08-08 at 17 48 39" src="https://github.com/user-attachments/assets/5ceb4a81-7a7b-4c84-b6de-5be7aa7464da" />
-
-<img width="1920" height="1010" alt="Screenshot 2025-08-08 at 18 07 07" src="https://github.com/user-attachments/assets/044bfcaa-2f4e-4551-99e2-d642546053e9" />
-
-<img width="921" height="592" alt="Screenshot 2025-08-08 at 19 41 26" src="https://github.com/user-attachments/assets/77e72400-6a8d-4077-a443-23fb8f6aa99e" />
-
 <img width="946" height="509" alt="Screenshot 2025-08-08 at 19 43 49" src="https://github.com/user-attachments/assets/3ed8dd86-2a15-479f-9ff9-938cbf953ff6" />
 
 ## Mainboard
