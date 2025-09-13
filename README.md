@@ -17,8 +17,9 @@ The main board houses the CM5 and breaks out the most basic functionality needed
 - 1x HDMI FPC connector for external break out
 - 1x PCIe FPC connector, Pi 5 compatible
 - 2x USB-C (One for power/flashing - USB 2.0 and one regular USB 3.0)
-- Integrated BMS (BQ25895) with up to 15W output dependent on battery used.
-- I2C control for BQ25895
+- Integrated BMS (BQ25895) with up to 5A charging dependent on battery used.
+- TPS61022 5V boost for upto 3A of constant power from battery or USB.
+- I2C control for BQ25895 with ADC battery level monitoring.
 
 Read more about the mainboard [here](./mainboard.md)
 
@@ -51,21 +52,4 @@ Read more about the SSD board [here](./ssdboard.md)
 <img width="212" height="212" alt="image" src="https://github.com/user-attachments/assets/3c6a5d8c-0add-428b-ab01-c25ad1e42543" />
 
 
-Huge thanks to Bob from OSHWLab for all the support and sponsoring the PCBA! If you're a teenager interested in tech, checkout [HackClub](https://hackclub.com), huge thanks to them for covering remaining tools/materials costs.
-
-
-
-### BOM:
-
-| Part        | Quantity | Price    |
-|-------------|----------|----------|
-| Mainboard PCBA | 5        | $0.00  Paid Myself |
-| SSD PCBA | 3 | $0.00 Paid myself funds redirected to soldering iron + batteries and jumper cables |
-| Shipping + Taxes | 1 | $57.80 |
-| [3.7V 3000mAh LiPo](https://www.aliexpress.com/item/1005006866132237.html?spm=a2g0o.cart.0.0.202b38dav2dfIE&mp=1&pdp_npi=5%40dis%21GBP%21GBP%2018.99%21GBP%2013.29%21%21GBP%2012.42%21%21%21%40211b61ae17545027136684032e8141%2112000038559144955%21ct%21UK%214887545243%21%211%210) | 1        | $25.00   |
-| Thermal Pads | 1x | $8 |
-| Raspberry Pi CM5 | | $120.00 |
-| CM5 Cooler | 1 | $7.00 |
-| PCIe FPC + Display FPC | 3 | $3.95 |
-| Soldering iron + solder + microsoldering tips | 1 | $69 |
-Note: Got sponsorship for PCB so price reduced to $61 from $350. 16GB CM5 needed due to the astro-stacking software and various other things that will be run in parallel.
+Huge thanks to Bob from OSHWLab for all the support and sponsoring the PCBA! 
