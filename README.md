@@ -41,7 +41,7 @@ Read more about the SSD board [here](./ssdboard.md)
  </br>
  </br>
  
-<img width="500" height="1000" alt="image" src="https://github.com/user-attachments/assets/e93a1d8b-093b-412c-bb61-1ad24fef76f9" />
+<img width="200" height="1000" alt="image" src="https://github.com/user-attachments/assets/e93a1d8b-093b-412c-bb61-1ad24fef76f9" />
  &nbsp;
   &nbsp;
    &nbsp;
@@ -49,7 +49,7 @@ Read more about the SSD board [here](./ssdboard.md)
 </br></br>
 
    
-<img width="500" height="1000" alt="image" src="https://github.com/user-attachments/assets/21c10633-868b-4a69-a2cb-da89eb62470c" />
+<img width="200" height="1000" alt="image" src="https://github.com/user-attachments/assets/21c10633-868b-4a69-a2cb-da89eb62470c" />
  &nbsp;
   &nbsp;
    &nbsp;
