@@ -15,7 +15,7 @@ The main board houses the CM5 and breaks out the most basic functionality needed
 - Integrated BMS (BQ25895) with up to 5A charging dependent on battery used.
 - TPS61022 5V boost for upto 3A of constant power from battery or USB.
 - I2C control for BQ25895 with ADC battery level monitoring.
-
+- Onboard LSM6DSV16XTR IMU via I2C
 Read more about the mainboard [here](./mainboard.md)
 
 ## Expansion Boards:
