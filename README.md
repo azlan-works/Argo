@@ -35,7 +35,7 @@ Read more about the SSD board [here](./ssdboard.md)
 <img width="1000" height="650" alt="PNG image" src="https://github.com/user-attachments/assets/eacc20a1-aa8d-4547-9267-b5a6de9bc2f0" />
 
 
-## Sponsored by OSHWLab Stars and HackClub:
+## Sponsored by OSHWLab Stars:
  &nbsp;
 
  </br>
