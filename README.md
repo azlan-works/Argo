@@ -18,6 +18,16 @@ The main board houses the CM5 and breaks out the most basic functionality needed
 - Onboard LSM6DSV16XTR IMU via I2C
 
 Read more about the mainboard [here](./mainboard.md)
+## Benchmarks:
+
+Benchmarks conducted using v1 boards using CM5 16GB RAM and 64GB eMMC + Waveshare CM5 cooler with fan.
+
+### On Adapter:
+<img width="870" height="720" alt="Screenshot 2025-09-29 at 17 29 10" src="https://github.com/user-attachments/assets/c8d4fa4d-bc87-4725-a374-f5dcdfacbbeb" />
+
+### On Battery:
+<img width="870" height="712" alt="Screenshot 2025-09-29 at 17 29 34" src="https://github.com/user-attachments/assets/bf5b029f-948d-474b-a983-5d2048db3ef9" />
+
 
 ## Expansion Boards:
 
