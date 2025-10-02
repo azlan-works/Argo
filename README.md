@@ -1,6 +1,6 @@
-# Argo
+# Argo v2
 
-![image](https://github.com/user-attachments/assets/2ff08daf-f34f-497e-9aa8-630959d153f1)
+![A080620E-1A4C-4EFC-86CE-AD3B6DF5B84E_1_105_c](https://github.com/user-attachments/assets/228f5857-98e6-439d-870c-f11c0d270501)
 
 
 ## Mainboard
