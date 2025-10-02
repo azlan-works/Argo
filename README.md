@@ -62,4 +62,4 @@ Huge thanks to Bob from OSHWLab for all the support and sponsoring the PCBA!
 
 ## Note:
 
-Commerical reproduction is NOT permitted for this design without prior licensing agreements.
+Commerical reproduction is NOT permitted for this design without prior agreements.
