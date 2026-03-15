@@ -1,5 +1,14 @@
 # Argo v2
 
+
+## Crowdsupply:
+
+Argo is soon to launch on CrowdSupply, sign up now to be updated as soon as it's live and ready for pre-order!
+
+https://www.crowdsupply.com/azlan-works/argo-cm5
+
+
+
 ![A080620E-1A4C-4EFC-86CE-AD3B6DF5B84E_1_105_c](https://github.com/user-attachments/assets/228f5857-98e6-439d-870c-f11c0d270501)
 
 
