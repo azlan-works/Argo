@@ -2,75 +2,120 @@ import smbus2
 import time
 import sys
 import os
+from collections import deque
 
-# --- I2C and Chip Configuration ---
-I2C_BUS = 10
-I2C_ADDR = 0x6a
+I2C_BUS = 1
+I2C_ADDR = 0x6A
 
-# Register Definitions (from your code)
-REG_ILIM = 0x00
-REG_SYSMIN = 0x03
-REG_ICHG = 0x04
-REG_WATCHDOG = 0x07
-REG_BATFET = 0x09
+# Registers
 REG_ADC_CTRL = 0x02
-REG_VBAT = 0x0E  # **Using 0x0E as per your code's definition**
+REG_VBAT = 0x0E
+REG_VBUS = 0x11
 
-# Byte Definitions (from your code)
-BYTE_INIT_CONFIG = {
-    REG_WATCHDOG: 0x8D, # Stop Watchdog timer (0b10001101)
-    REG_ILIM:     0x00, # Input limit disabled
-    REG_ICHG:     0x08, # 0.5A charging current limit
-    REG_BATFET:   0x48, # BATFET control settings (0b01001000)
-    REG_SYSMIN:   0x30  # Vsys_min = 3.5V (0b00110000)
-}
-BYTE_ADC_START = 0x9D  # Start One-Shot Conversion
-BYTE_ADC_STOP = 0x1D   # Stop Conversion
+# ADC control
+BYTE_ADC_START_ONESHOT = 0x9D
+BYTE_ADC_STOP = 0x1D
 
-# Conversion Constants
-VOLTAGE_OFFSET = 2.304
-VOLTAGE_LSB = 0.020 # 20 mV per LSB
+# Conversion constants
+VBAT_OFFSET = 2.304
+VBAT_LSB = 0.020
+VBUS_OFFSET = 2.600
+VBUS_LSB = 0.100
 
-def _vbat_convert(raw_byte):
-    """Converts the raw ADC byte into battery voltage using arithmetic."""
-    adc_code = raw_byte & 0x7F
-    # Formula: V_BAT = (ADC_Code * 0.020V) + 2.304V
-    voltage = (adc_code * VOLTAGE_LSB) + VOLTAGE_OFFSET
-    return voltage, adc_code
+# Detection tuning
+WINDOW = 6
+MIN_BAT_NONZERO = 4
+STUCK_SPAN_MV = 20
+VBUS_PRESENT_MIN_CODE = 2
 
-def read_battery_voltage_realtime():
+def _convert_vbat(raw_byte):
+    code = raw_byte & 0x7F
+    voltage = VBAT_OFFSET + code * VBAT_LSB
+    return voltage, code
+
+def _convert_vbus(raw_byte):
+    code = raw_byte & 0x7F
+    voltage = VBUS_OFFSET + code * VBUS_LSB
+    return voltage, code
+
+def _is_battery_present(vbat_codes, vbus_codes):
+    if not vbat_codes:
+        return False
+
+    nonzero_count = sum(1 for c in vbat_codes if c > 0)
+    if nonzero_count < MIN_BAT_NONZERO:
+        return False
+
+    vbus_present_any = any(c >= VBUS_PRESENT_MIN_CODE for c in vbus_codes)
+    if vbus_present_any:
+        nz = [c for c in vbat_codes if c > 0]
+        if len(nz) >= 3:
+            vmin = min(nz)
+            vmax = max(nz)
+            if (vmax - vmin) * 20 <= STUCK_SPAN_MV:
+                return False
+
+    return True
+
+def read_power_voltage_realtime():
+    bus = None
     try:
         bus = smbus2.SMBus(I2C_BUS)
-        
-        # 1. Initialize Registers (Run once)
-        for reg, byte in BYTE_INIT_CONFIG.items():
-            bus.write_byte_data(I2C_ADDR, reg, byte)
-            
-        print(f"BQ25895 monitoring started (I2C Bus {I2C_BUS}, Addr 0x{I2C_ADDR:X}).")
-        print("Press Ctrl+C to stop.")
-        print("-" * 35)
+
+        vbat_hist = deque(maxlen=WINDOW)
+        vbus_hist = deque(maxlen=WINDOW)
+
+        print(f"BQ25895 monitor started (I2C Bus {I2C_BUS}, Addr 0x{I2C_ADDR:X})")
+        print("Minimal-write mode: one-shot ADC trigger only")
+        print("Presence logic: debounced + stale-VBAT rejection")
+        print("Press Ctrl+C to stop")
+        print("-" * 95)
 
         while True:
-            # 2. Start One-Shot ADC Conversion
-            bus.write_byte_data(I2C_ADDR, REG_ADC_CTRL, BYTE_ADC_START)
-            
-            # Wait for conversion to complete (25ms is typical, 100ms is safe)
-            time.sleep(0.1)
-            
-            # 3. Read the VBAT ADC Register
-            vbat_byte = bus.read_byte_data(I2C_ADDR, REG_VBAT)
-            
-            # 4. Stop ADC Conversion (to return to low-power mode)
+            bus.write_byte_data(I2C_ADDR, REG_ADC_CTRL, BYTE_ADC_START_ONESHOT)
+            time.sleep(0.10)
+
+            vbat_raw = bus.read_byte_data(I2C_ADDR, REG_VBAT)
+            vbus_raw = bus.read_byte_data(I2C_ADDR, REG_VBUS)
+
             bus.write_byte_data(I2C_ADDR, REG_ADC_CTRL, BYTE_ADC_STOP)
 
-            # 5. Convert and Display
-            voltage, raw_code = _vbat_convert(vbat_byte)
-            
-            # Use carriage return to update the same line
-            sys.stdout.write(f"\rBattery Voltage: {voltage:.3f} V | Raw Code: {raw_code} (0x{raw_code:X})")
-            sys.stdout.flush()
+            vbat_v, vbat_code = _convert_vbat(vbat_raw)
+            vbus_v, vbus_code = _convert_vbus(vbus_raw)
 
-            # 6. Wait for the next update cycle (Total loop time ~0.5s)
+            vbat_hist.append(vbat_code)
+            vbus_hist.append(vbus_code)
+
+            vbus_present = vbus_code >= VBUS_PRESENT_MIN_CODE
+            battery_present = _is_battery_present(list(vbat_hist), list(vbus_hist))
+
+            if battery_present and vbus_present:
+                msg = (
+                    f"\rPower: BATTERY + VBUS | "
+                    f"VBAT: {vbat_v:.3f} V (raw {vbat_code}/0x{vbat_code:02X}) | "
+                    f"VBUS: {vbus_v:.3f} V (raw {vbus_code}/0x{vbus_code:02X})"
+                )
+            elif battery_present and not vbus_present:
+                msg = (
+                    f"\rPower: BATTERY ONLY | "
+                    f"VBAT: {vbat_v:.3f} V (raw {vbat_code}/0x{vbat_code:02X}) | "
+                    f"VBUS: not present (raw {vbus_code}/0x{vbus_code:02X})"
+                )
+            elif (not battery_present) and vbus_present:
+                msg = (
+                    f"\rPower: VBUS ONLY | "
+                    f"VBUS: {vbus_v:.3f} V (raw {vbus_code}/0x{vbus_code:02X}) | "
+                    f"VBAT: ignored/stale (raw {vbat_code}/0x{vbat_code:02X})"
+                )
+            else:
+                msg = (
+                    f"\rPower: NONE/UNKNOWN | "
+                    f"VBAT raw {vbat_code}/0x{vbat_code:02X}, "
+                    f"VBUS raw {vbus_code}/0x{vbus_code:02X}"
+                )
+
+            sys.stdout.write(msg)
+            sys.stdout.flush()
             time.sleep(0.4)
 
     except KeyboardInterrupt:
@@ -78,12 +123,14 @@ def read_battery_voltage_realtime():
     except FileNotFoundError:
         sys.stdout.write(f"\nError: I2C Bus /dev/i2c-{I2C_BUS} not found.\n")
     except Exception as e:
-        sys.stdout.write(f"\nAn I2C communication error occurred: {e}\n")
+        sys.stdout.write(f"\nI2C communication error: {e}\n")
     finally:
-        # Ensure the bus is closed if necessary (smbus2 handles this implicitly)
-        pass
+        if bus is not None:
+            try:
+                bus.close()
+            except Exception:
+                pass
 
-if __name__ == '__main__':
-    # Clear the terminal before starting for a clean look
-    os.system('cls' if os.name == 'nt' else 'clear') 
-    read_battery_voltage_realtime()
+if __name__ == "__main__":
+    os.system("cls" if os.name == "nt" else "clear")
+    read_power_voltage_realtime()
