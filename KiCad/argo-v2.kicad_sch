@@ -1,0 +1,238 @@
+(kicad_sch
+	(version 20260101)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "c0ff6298-3bc0-45c7-9f5b-319c9f0b6639")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 5.08 40.64)
+		(size 12.7 3.81)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "3d5fc253-2342-466e-898b-3c2706d3273b")
+		(property "Sheetname" "CM4/5 Connector"
+			(at 5.08 39.9284 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "5_CM4{slash}5 Connector.kicad_sch"
+			(at 5.08 45.0346 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project ""
+				(path "/c0ff6298-3bc0-45c7-9f5b-319c9f0b6639"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 5.08 13.97)
+		(size 12.7 3.81)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "6ccf875e-555a-400e-bbac-5896b44f24c2")
+		(property "Sheetname" "USB-C 3.0"
+			(at 5.08 13.2584 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "2_USB-C 3.0.kicad_sch"
+			(at 5.08 18.3646 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project ""
+				(path "/c0ff6298-3bc0-45c7-9f5b-319c9f0b6639"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 5.08 31.75)
+		(size 12.7 3.81)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "8170b26b-874b-4418-8a36-dcdb3e03031b")
+		(property "Sheetname" "Power"
+			(at 5.08 31.0384 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "4_Power.kicad_sch"
+			(at 5.08 36.1446 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project ""
+				(path "/c0ff6298-3bc0-45c7-9f5b-319c9f0b6639"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 5.08 5.08)
+		(size 12.7 3.81)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "8beb2b6c-dda2-4711-9234-4aed6ee6d7ce")
+		(property "Sheetname" "Display/Camera"
+			(at 5.08 4.3684 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "1_Display{slash}Camera.kicad_sch"
+			(at 5.08 9.4746 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project ""
+				(path "/c0ff6298-3bc0-45c7-9f5b-319c9f0b6639"
+					(page "1")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 5.08 22.86)
+		(size 12.7 3.81)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "fb0e41d8-b560-43da-b67c-59d153557c2c")
+		(property "Sheetname" "IO"
+			(at 5.08 22.1484 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "3_IO.kicad_sch"
+			(at 5.08 27.2546 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project ""
+				(path "/c0ff6298-3bc0-45c7-9f5b-319c9f0b6639"
+					(page "3")
+				)
+			)
+		)
+	)
+)
